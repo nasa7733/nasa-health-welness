@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Wellness Resources</h2>
+  <p>Here are curated resources to support your health and mental wellness.</p>
+  <ul class="resource-list">
+    {% for item in resources %}
+      <li>
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.description }}</p>
+        <a href="{{ item.link }}" target="_blank" rel="noopener">Open resource</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

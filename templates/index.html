@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <section class="hero">
+    <div class="hero-grid">
+      <div>
+        <h2>Welcome to your wellness toolkit</h2>
+        <p>Explore calming resources, guided breathing, and a mood-check form designed to support your mental wellness.</p>
+      </div>
+      <div class="hero-media">
+        <img src="{{ url_for('static', filename='images/yoga-wellness.svg') }}" alt="NASA wellness yoga illustration">
+      </div>
+    </div>
+  </section>
+
+  <section class="grid">
+    <article class="card">
+      <h3>Curated Resources</h3>
+      <p>Browse articles and tools for better sleep, focus, and emotional balance.</p>
+      <a class="button" href="{{ url_for('resources') }}">View Resources</a>
+    </article>
+    <article class="card">
+      <h3>Breathing Exercise</h3>
+      <p>Practice a simple 4-7-8 breathing routine to reduce stress instantly.</p>
+      <a class="button" href="{{ url_for('breathing_exercise') }}">Start Breathing</a>
+    </article>
+    <article class="card">
+      <h3>Mood Check</h3>
+      <p>Share how you're feeling and get a supportive recommendation.</p>
+      <a class="button" href="{{ url_for('mood_check') }}">Check Mood</a>
+    </article>
+  </section>
+
+  <section class="yoga-templates">
+    <h2>Yoga Templates</h2>
+    <p>Try gentle yoga flows inspired by relaxation, focus, and grounding practices.</p>
+    <div class="template-grid">
+      <article class="template-card">
+        <h3>Morning Grounding</h3>
+        <p>Start your day with slow stretches, breath integration, and mindful movement.</p>
+      </article>
+      <article class="template-card">
+        <h3>Calm & Center</h3>
+        <p>A gentle flow for evening unwinding and emotional balance.</p>
+      </article>
+      <article class="template-card">
+        <h3>Focused Reset</h3>
+        <p>Short standing poses to release tension and restore mental clarity.</p>
+      </article>
+    </div>
+  </section>
+{% endblock %}

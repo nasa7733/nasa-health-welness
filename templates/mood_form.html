@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Mood Check</h2>
+  <p>Share how you're feeling and receive a supportive recommendation.</p>
+  <form method="post" class="mood-form">
+    <label for="mood">Mood</label>
+    <select id="mood" name="mood" required>
+      <option value="">Select your mood</option>
+      <option value="happy">Happy</option>
+      <option value="neutral">Neutral</option>
+      <option value="sad">Sad</option>
+      <option value="anxious">Anxious</option>
+      <option value="stressed">Stressed</option>
+    </select>
+
+    <label for="notes">Notes (optional)</label>
+    <textarea id="notes" name="notes" rows="4" placeholder="Optional: What are you feeling right now?"></textarea>
+
+    <button class="button" type="submit">Get Recommendation</button>
+  </form>
+{% endblock %}

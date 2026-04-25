@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Health & Mental Wellness Hub</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <h1>Health & Mental Wellness Hub</h1>
+        <nav>
+          <a href="{{ url_for('home') }}">Home</a>
+          <a href="{{ url_for('resources') }}">Resources</a>
+          <a href="{{ url_for('breathing_exercise') }}">Breathing</a>
+          <a href="{{ url_for('mood_check') }}">Mood Check</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>Use the app to find wellness resources, calming exercises, and mood support.</p>
+      </div>
+    </footer>
+  </body>
+</html>

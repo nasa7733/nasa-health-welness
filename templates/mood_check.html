@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Mood Support</h2>
+  <div class="result-card">
+    <p><strong>Mood:</strong> {{ mood | title }}</p>
+    {% if notes %}
+      <p><strong>Notes:</strong> {{ notes }}</p>
+    {% endif %}
+    <p><strong>Recommendation:</strong> {{ recommendation }}</p>
+    <p><strong>Quick resource:</strong> <a href="{{ resource.link }}" target="_blank" rel="noopener">{{ resource.title }}</a></p>
+    <a class="button" href="{{ url_for('mood_check') }}">Check another mood</a>
+  </div>
+{% endblock %}

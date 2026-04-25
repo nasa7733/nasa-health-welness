@@ -1,0 +1,14 @@
+# Python artifacts
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+.env
+
+# Docker artifacts
+Dockerfile
+
+# Editor files
+.vscode/
+.idea/

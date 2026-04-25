@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Calming Breathing Exercise</h2>
+  <p>Follow the 4-7-8 breathing steps to support relaxation.</p>
+  <ol class="steps">
+    {% for step in exercise.steps %}
+      <li>{{ step }}</li>
+    {% endfor %}
+  </ol>
+  <p class="tip"><strong>Tip:</strong> {{ exercise.tip }}</p>
+{% endblock %}
