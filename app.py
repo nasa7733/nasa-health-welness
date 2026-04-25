@@ -20,6 +20,36 @@ RESOURCE_LIBRARY = [
     }
 ]
 
+SPECIAL_RECOMMENDATIONS = [
+    {
+        "title": "Elder People",
+        "bullets": [
+            "Choose soft, nutrient-rich foods like cooked vegetables, lean proteins, and whole grains.",
+            "Stay hydrated throughout the day and limit caffeine and salty snacks.",
+            "Add calcium and vitamin D sources to support bone health, such as yogurt and fortified milk."
+        ],
+        "link": "https://www.nia.nih.gov/health/healthy-eating"
+    },
+    {
+        "title": "Pregnant People",
+        "bullets": [
+            "Eat folate-rich foods like leafy greens, beans, and fortified cereals.",
+            "Include iron and protein from lean meats, eggs, and legumes to support healthy growth.",
+            "Choose calcium-rich snacks, hydrate often, and avoid high-mercury fish."
+        ],
+        "link": "https://www.acog.org/womens-health/faqs/nutrition-during-pregnancy"
+    },
+    {
+        "title": "Infants Diet",
+        "bullets": [
+            "Breast milk or formula is ideal for the first 6 months before introducing solids.",
+            "Start solids slowly with pureed fruits, vegetables, and iron-fortified cereals.",
+            "Avoid honey and whole nuts until after 12 months and watch for choking hazards."
+        ],
+        "link": "https://www.cdc.gov/nutrition/InfantandToddlerNutrition/index.html"
+    }
+]
+
 MOOD_RECOMMENDATIONS = {
     "sad": "Try a short walk, journaling, or calling a friend. If the feeling persists, reach out to a mental health professional.",
     "anxious": "Practice deep breathing and ground yourself with your senses. Small breaks can help lower stress.",
@@ -39,17 +69,33 @@ BREATHING_EXERCISE = {
     "tip": "Use this when you feel anxious, stressed, or overwhelmed."
 }
 
+
 @app.route("/", methods=["GET"])
 def home():
     return render_template("index.html")
 
+
 @app.route("/resources", methods=["GET"])
 def resources():
-    return render_template("resources.html", resources=RESOURCE_LIBRARY)
+    return render_template(
+        "resources.html",
+        resources=RESOURCE_LIBRARY,
+        special_recommendations=SPECIAL_RECOMMENDATIONS,
+    )
+
+
+@app.route("/diet-guidance", methods=["GET"])
+def diet_guidance():
+    return render_template(
+        "diet_guidance.html",
+        special_recommendations=SPECIAL_RECOMMENDATIONS,
+    )
+
 
 @app.route("/breathing-exercise", methods=["GET"])
 def breathing_exercise():
     return render_template("breathing.html", exercise=BREATHING_EXERCISE)
+
 
 @app.route("/mood-check", methods=["GET", "POST"])
 def mood_check():
@@ -57,23 +103,27 @@ def mood_check():
         mood = request.form.get("mood", "neutral").strip().lower()
         notes = request.form.get("notes", "")
         recommendation = MOOD_RECOMMENDATIONS.get(mood, MOOD_RECOMMENDATIONS["neutral"])
+
         return render_template(
             "mood_check.html",
             mood=mood,
             notes=notes,
             recommendation=recommendation,
-            resource=RESOURCE_LIBRARY[0]
+            resource=RESOURCE_LIBRARY[0],
         )
 
     return render_template("mood_form.html")
+
 
 @app.route("/api/resources", methods=["GET"])
 def api_resources():
     return jsonify({"resources": RESOURCE_LIBRARY})
 
+
 @app.route("/api/breathing-exercise", methods=["GET"])
 def api_breathing_exercise():
     return jsonify(BREATHING_EXERCISE)
+
 
 @app.route("/api/mood-check", methods=["POST"])
 def api_mood_check():
@@ -86,8 +136,9 @@ def api_mood_check():
         "mood": mood,
         "notes": notes,
         "recommendation": recommendation,
-        "resource": RESOURCE_LIBRARY[0]
+        "resource": RESOURCE_LIBRARY[0],
     })
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080, debug=True)

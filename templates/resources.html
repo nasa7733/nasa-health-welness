@@ -12,4 +12,23 @@
       </li>
     {% endfor %}
   </ul>
+
+  <section class="special-care">
+    <h2>Special Care Recommendations</h2>
+    <p>Nutrition and supportive wellness tips for elder people, pregnant people, and infants.</p>
+    <div class="recommendation-grid">
+      {% for item in special_recommendations %}
+        <article class="card">
+          <h3>{{ item.title }}</h3>
+          <ul>
+            {% for bullet in item.bullets %}
+              <li>{{ bullet }}</li>
+            {% endfor %}
+          </ul>
+          <a href="{{ item.link }}" target="_blank" rel="noopener">Learn more</a>
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+
 {% endblock %}

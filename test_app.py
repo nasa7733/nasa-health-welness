@@ -6,7 +6,7 @@ def test_home_ui_renders_html():
     response = client.get("/")
     assert response.status_code == 200
     html = response.get_data(as_text=True)
-    assert "Health & Mental Wellness Hub" in html
+    assert "Nasa's Health & Mental Wellness Hub" in html
     assert "Wellness Resources" in html or "Mood Check" in html
 
 def test_api_resources_contains_library():
@@ -33,3 +33,12 @@ def test_api_mood_check_recommendation_for_anxious():
     data = response.get_json()
     assert data["mood"] == "anxious"
     assert "breathing" in data["recommendation"].lower() or "stress" in data["recommendation"].lower()
+
+
+def test_diet_guidance_ui_renders_html():
+    client = app.test_client()
+    response = client.get("/diet-guidance")
+    assert response.status_code == 200
+    html = response.get_data(as_text=True)
+    assert "Diet Guidance" in html
+    assert "Elder People" in html
